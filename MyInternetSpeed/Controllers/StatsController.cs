@@ -19,15 +19,16 @@ namespace MyInternetSpeed.Controllers
         {
             _statsRepository = statsRepository;
         }
+        
         [HttpGet]
-        [Route("stats/userId/history")]
+        [Route("userId/history")]
         public IQueryable<double> GetHistory(string userId)
         {
             return _statsRepository.GetHistoryAsync(userId);
         }
 
         [HttpGet]
-        [Route("stats/ISP")]
+        [Route("ISP")]
         public IQueryable<double> GetISP(string location)
         {
             return _statsRepository.GetResultsAsync(location);

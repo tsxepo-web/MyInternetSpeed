@@ -12,11 +12,11 @@ namespace MyInternetSpeed.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class UserConroller : Controller
+    public class UserController : Controller
     {
         private readonly IUserRepository  _userRepository;
 
-        public UserConroller(IUserRepository context)
+        public UserController(IUserRepository context)
         {
             _userRepository = context;
         }
