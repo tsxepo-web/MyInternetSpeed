@@ -11,6 +11,7 @@ namespace Database
         {
             _context = context;
         }
+
         public async Task CreateUserAsync(User user)
         {
             _context.Users.Add(user);

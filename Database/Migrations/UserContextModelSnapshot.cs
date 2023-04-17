@@ -48,6 +48,10 @@ namespace Database.Migrations
                     b.Property<double>("UploadSpeed")
                         .HasColumnType("float");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");

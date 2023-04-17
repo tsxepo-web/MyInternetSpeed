@@ -15,14 +15,23 @@ namespace Database
         {
             _context = context;
         }
-        public async Task<User> GetHistoryAsync(int Id)
+        public IQueryable<double> GetHistoryAsync(string userId)
         {
-           return await _context.Users.FindAsync(Id);
+            DateTime oneMonthAgo = DateTime.Now.AddMonths(-1);
+            DateTime today = DateTime.Now;
+
+            var history = _context.Users
+                .Where(r => r.Date >= oneMonthAgo && r.Date <= today)
+                .Select(r => r.DownloadSpeed);
+           return history;
         }
 
-        public Task<User> GetResultsAsync(string location)
+        public IQueryable<double> GetResultsAsync(string location)
         {
-            throw new NotImplementedException();
+            var results = _context.Users
+                .Where(r => r.Location == location && r.DownloadSpeed == r.DownloadSpeed)
+                .Select(r => r.DownloadSpeed);
+                return results;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Data.Access
 {
     public interface IStatsRepository
     {
-        Task<User> GetHistoryAsync(int Id);
-        Task<User> GetResultsAsync(string location);
+        IQueryable<double> GetHistoryAsync(string userId);
+        IQueryable<double> GetResultsAsync(string location);
     }
 }

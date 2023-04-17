@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IStatsRepository, StatsRepository>();
 builder.Services.AddDbContext<UserContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

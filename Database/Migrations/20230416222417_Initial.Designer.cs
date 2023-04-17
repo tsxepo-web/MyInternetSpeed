@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230416195058_Initial")]
+    [Migration("20230416222417_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -50,6 +50,10 @@ namespace Database.Migrations
 
                     b.Property<double>("UploadSpeed")
                         .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

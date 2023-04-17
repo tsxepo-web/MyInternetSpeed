@@ -4,6 +4,7 @@ namespace Models;
 public class User
 {
     public int Id {get;set;}
+    public string UserId {get;set;} = null!;
     public string? IP {get;set;}
     public string? ISP {get;set;}
     public string? Location {get;set;}

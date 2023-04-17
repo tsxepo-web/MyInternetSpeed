@@ -10,7 +10,7 @@ using Models;
 
 namespace MyInternetSpeed.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserConroller : Controller
     {
@@ -21,6 +21,7 @@ namespace MyInternetSpeed.Controllers
             _userRepository = context;
         }
         [HttpPost]
+        [Route("users/{Id}")]
         public async Task<IActionResult> PostUser(User user)
         {
             await _userRepository.CreateUserAsync(user);
