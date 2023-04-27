@@ -1,7 +1,7 @@
 using Data.Access;
-using Database;
-using Database.Context;
 using Microsoft.EntityFrameworkCore;
+using Models;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient<IStatsRepository, StatsRepository>();
-builder.Services.AddDbContext<UserContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
+builder.Services.AddTransient<IUserRepository, MongodbService>();
+builder.Services.AddTransient<IStatsRepository, StatsService>();
+builder.Services.Configure<NetworkSpeedDbSettings>(builder.Configuration.GetSection("NetworkSpeedTest"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

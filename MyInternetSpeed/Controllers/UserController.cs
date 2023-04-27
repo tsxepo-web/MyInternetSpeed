@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Data.Access;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Models;
 
 namespace MyInternetSpeed.Controllers
@@ -21,11 +15,16 @@ namespace MyInternetSpeed.Controllers
             _userRepository = context;
         }
         [HttpPost]
-        [Route("users/{Id}")]
         public async Task<IActionResult> PostUser(User user)
         {
             await _userRepository.CreateUserAsync(user);
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await _userRepository.GetUsersAsync();
         }
     }
 }

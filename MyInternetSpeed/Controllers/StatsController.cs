@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Data.Access;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Models.DTO;
 
 namespace MyInternetSpeed.Controllers
 {
@@ -22,14 +23,14 @@ namespace MyInternetSpeed.Controllers
         
         [HttpGet]
         [Route("userId/history")]
-        public IQueryable<double> GetHistory(string userId)
+        public Task<List<HistoryDto>> GetHistory(string userId)
         {
             return _statsRepository.GetHistoryAsync(userId);
         }
 
         [HttpGet]
         [Route("ISP")]
-        public IQueryable<double> GetISP(string location)
+        public Task<ResultDto> GetISP(string location)
         {
             return _statsRepository.GetResultsAsync(location);
         }

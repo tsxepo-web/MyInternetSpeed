@@ -1,9 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 namespace Models;
 public class User
 {
-    public int Id {get;set;}
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? Id {get;set;}
     public string UserId {get;set;} = null!;
     public string? IP {get;set;}
     public string? ISP {get;set;}
