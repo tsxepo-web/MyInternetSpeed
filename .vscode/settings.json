@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/57e1873c-49d0-4f87-a75a-5608cf6d108d/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/network-speed-test",
+    "appService.deploySubpath": "."
+}
