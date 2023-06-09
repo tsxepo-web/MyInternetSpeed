@@ -1,8 +1,6 @@
 using Data.Access;
 using Models;
-using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Models.DTO;
 
 namespace Services
 {
