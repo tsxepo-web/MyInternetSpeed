@@ -22,7 +22,6 @@ builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddTransient<IUserRepository, MongodbService>();
 builder.Services.AddTransient<IStatsRepository, StatsService>();
-builder.Services.Configure<NetworkSpeedDbSettings>(builder.Configuration.GetSection("NetworkSpeedTest"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
