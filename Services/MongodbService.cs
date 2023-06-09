@@ -9,11 +9,9 @@ namespace Services
     public class MongodbService : IUserRepository
     {
         private readonly IMongoCollection<User> _userCollection;
-        public MongodbService(IOptions<NetworkSpeedDbSettings> userDatabaseSettings)
+        public MongodbService(IMongoCollection<User> userCollection)
         {
-            var mongoClient  = new MongoClient(userDatabaseSettings.Value.ConnectionString);
-            var mongoDatabase = mongoClient.GetDatabase(userDatabaseSettings.Value.DatabaseName);
-            _userCollection = mongoDatabase.GetCollection<User>(userDatabaseSettings.Value.UserCollectionName);
+            _userCollection = userCollection;
         }
         public async Task CreateUserAsync(User user)
         {

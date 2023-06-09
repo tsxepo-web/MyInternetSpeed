@@ -1,13 +1,23 @@
 using Data.Access;
+using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using MongoDB.Driver;
 using Services;
 
-var MyAllowedSpecificOrigins = "_myAllowedSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+DotEnv.Load();
+var envKeys = DotEnv.Read();
 
+var mongoConnectionString = envKeys["ConnectionString"];
+var mongoDatabaseName = envKeys["DatabaseName"];
+var mongoCollectionName = envKeys["CollectionName"];
+
+var mongoClient = new MongoClient(mongoConnectionString);
+var mongoDatabase = mongoClient.GetDatabase(mongoDatabaseName);
+var mongoCollection = mongoDatabase.GetCollection<User>(mongoCollectionName);
+builder.Services.AddSingleton<IMongoCollection<User>>(mongoCollection);
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddTransient<IUserRepository, MongodbService>();
@@ -15,10 +25,10 @@ builder.Services.AddTransient<IStatsRepository, StatsService>();
 builder.Services.Configure<NetworkSpeedDbSettings>(builder.Configuration.GetSection("NetworkSpeedTest"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors(options => 
+builder.Services.AddCors(options =>
 {
     options.AddPolicy("default",
-    builder => 
+    builder =>
     {
         builder.AllowAnyOrigin()
         .AllowAnyHeader()
@@ -28,11 +38,10 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options => 
+    app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         options.RoutePrefix = "";
