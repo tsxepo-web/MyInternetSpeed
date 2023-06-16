@@ -10,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 DotEnv.Load();
 var envKeys = DotEnv.Read();
 
-var mongoConnectionString = envKeys["ConnectionString"];
-var mongoDatabaseName = envKeys["DatabaseName"];
-var mongoCollectionName = envKeys["CollectionName"];
+var mongoConnectionString = "mongodb://tsxepo-speed-test:GYqdpxp90jK4tGxDlPSVEAnLVSNMQ1VUpLeiv7JQK9o8etVRa9OR2oCKtKpCdqqnKzAyb9d0ZAbdACDbXalyMA==@tsxepo-speed-test.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@tsxepo-speed-test@";
+var mongoDatabaseName = "test";
+var mongoCollectionName = "users";
 
 var mongoClient = new MongoClient(mongoConnectionString);
 var mongoDatabase = mongoClient.GetDatabase(mongoDatabaseName);
