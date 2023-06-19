@@ -4,4 +4,4 @@
 
 # URL
 
-Json Data ![Api-Data](https://network-speed-test.azurewebsites.net/user)
+![Api-Data](https://network-speed-test.azurewebsites.net/user)
